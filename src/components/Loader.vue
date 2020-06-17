@@ -8,6 +8,11 @@
   <div class="cards">
     <card v-for="(c, i) in cards" :msg="c" :key="i"></card>
   </div>
+  <!-- <div>
+    <a href="">
+      <img src="../assets/github.png" alt="">
+    </a>
+  </div> -->
 </div>
 </template>
 
