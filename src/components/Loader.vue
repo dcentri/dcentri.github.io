@@ -91,7 +91,7 @@ export default {
                 name: "Sofy"
               },
               {
-                name: "Upixelated"
+                name: "Unpixelated"
               },
             ]
           },
