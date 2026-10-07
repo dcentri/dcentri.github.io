@@ -140,11 +140,24 @@
   /* Contact */
   .contact { border-top: 1px solid var(--line); }
   .contact-grid { display: flex; flex-direction: column; gap: var(--space-4); max-width: 760px; }
-  .email-row { display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; }
   .email { font-family: var(--font-display); font-size: clamp(24px, 4vw, 36px); font-weight: 700; letter-spacing: -0.5px; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
   .email:hover { color: var(--signal); }
-  .copy-status { font-size: 13px; color: var(--ink-muted); min-height: 20px; }
 
+  .contact-form { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-2); }
+  .field-row { display: grid; gap: var(--space-3); }
+  @media (min-width: 640px) { .field-row { grid-template-columns: 1fr 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .field label { font-weight: 600; font-size: 14px; line-height: 20px; color: var(--ink); }
+  .field .opt { font-weight: 400; color: var(--ink-muted); }
+  .field input, .field textarea { font: 400 16px/24px var(--font-body); color: var(--ink); background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-s); padding: 12px 14px; width: 100%; }
+  .field textarea { resize: vertical; min-height: 140px; }
+  .field input:focus-visible, .field textarea:focus-visible { outline: 3px solid var(--signal); outline-offset: 1px; border-color: var(--signal); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .form-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; margin-top: var(--space-2); }
+  .btn:disabled { opacity: 0.6; cursor: wait; }
+  .form-status { min-height: 26px; color: var(--ink-muted); }
+  .form-status.is-ok { color: var(--ink); }
+  .form-status.is-error { color: var(--plum); }
   footer { padding-block: var(--space-5); border-top: 1px solid var(--line); font-size: 13px; line-height: 20px; color: var(--ink-muted); }
   footer .wrap { display: flex; flex-direction: column; gap: var(--space-2); }
 </style>
@@ -305,12 +318,21 @@
     <div class="wrap"><div class="contact-grid">
       <p class="label">Contact</p>
       <h2 id="contact-title">Have an operating problem AI could help with?</h2>
-      <p class="lead">Tell me about it. I reply within two business days, in French or English.</p>
-      <div class="email-row">
-        <a class="email" id="email-link" href="#contact" data-u="btrebla" data-d="moc.etiusodem">albertb [at] medosuite [dot] com</a>
-        <button class="btn btn-ghost" type="button" id="copy-email">Copy email</button>
-      </div>
-      <p class="copy-status" id="copy-status" aria-live="polite"></p>
+      <p class="lead">Tell me about it below. I reply within two business days, in French or English.</p>
+      <form class="contact-form" id="contact-form" action="https://formspree.io/f/FORMSPREE_ID" method="POST" novalidate>
+        <div class="field-row">
+          <div class="field"><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label for="cf-org">Company or organization <span class="opt">(optional)</span></label><input id="cf-org" name="organization" type="text" autocomplete="organization"></div>
+        <div class="field"><label for="cf-msg">What problem are you working on?</label><textarea id="cf-msg" name="message" rows="5" required></textarea></div>
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" id="cf-submit">Send message</button>
+          <a class="btn btn-ghost" href="LINKEDIN_URL" target="_blank" rel="noopener">Message me on LinkedIn</a>
+        </div>
+        <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+      </form>
     </div></div>
   </section>
 </main>
@@ -324,19 +346,31 @@
 
 <script>
   (function () {
-    var btn = document.getElementById('copy-email');
-    var status = document.getElementById('copy-status');
-    var link = document.getElementById('email-link');
-    var rev = function (t) { return t.split('').reverse().join(''); };
-    var email = rev(link.getAttribute('data-u')) + '@' + rev(link.getAttribute('data-d'));
-    link.textContent = email;
-    link.href = 'mai' + 'lto:' + email;
-    btn.addEventListener('click', function () {
-      var done = function () { status.textContent = 'Email copied.'; };
-      var fail = function () { status.textContent = 'Copy it from above: ' + email; };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(done, fail);
-      } else { fail(); }
+    var form = document.getElementById('contact-form');
+    var status = document.getElementById('cf-status');
+    var submit = document.getElementById('cf-submit');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        status.textContent = 'Please fill in your name, a valid email and a message.';
+        status.className = 'form-status is-error';
+        return;
+      }
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+      status.textContent = '';
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function (r) {
+          if (!r.ok) throw new Error('send failed');
+          form.reset();
+          status.textContent = 'Thanks, your message is on its way. I reply within two business days.';
+          status.className = 'form-status is-ok';
+        })
+        .catch(function () {
+          status.textContent = 'The message could not be sent. Please try again, or reach me on LinkedIn.';
+          status.className = 'form-status is-error';
+        })
+        .then(function () { submit.disabled = false; submit.textContent = 'Send message'; });
     });
   })();
 </script>
