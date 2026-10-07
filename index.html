@@ -1,1 +1,340 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=/favicon.ico><title>Albert B.</title><link href=/css/app.a2319280.css rel=preload as=style><link href=/js/app.038ec286.js rel=preload as=script><link href=/js/chunk-vendors.919c4afd.js rel=preload as=script><link href=/css/app.a2319280.css rel=stylesheet></head><body><noscript><strong>We're sorry but albert doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=/js/chunk-vendors.919c4afd.js></script><script src=/js/app.038ec286.js></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Albert Bitreyeson · Applied AI</title>
+<meta name="description" content="Applied AI for the plant floor and the clinic. Albert Bitreyeson helps manufacturers, clinics and growing businesses in Canada put AI to work on real operating problems.">
+<meta property="og:title" content="Albert Bitreyeson · Applied AI">
+<meta property="og:description" content="Applied AI for the plant floor and the clinic.">
+<meta property="og:image" content="https://dcentri.github.io/img/headshot.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Layout: one 1120px column; hero split text/portrait, a mono "field log" ledger as the proof, then work, approach, services, stance, field, contact. */
+  :root {
+    --surface: #f6f7fb; --surface-raised: #fdfdfe; --tint: #e3e8f6; --line: #d5daea;
+    --ink: #0d1330; --ink-muted: #4a5275; --signal: #1f5bff; --on-signal: #f8faff;
+    --violet: #6a4bff; --plum: #6b2140;
+    --font-display: "Bricolage Grotesque", "Arial Narrow", Arial, sans-serif;
+    --font-body: Figtree, "Segoe UI", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", "Courier New", monospace;
+    --space-1: 4px; --space-2: 8px; --space-3: 16px; --space-4: 24px; --space-5: 40px; --space-6: 64px; --space-7: 104px;
+    --radius-s: 6px; --radius-m: 14px; --radius-pill: 999px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --surface: #0b1026; --surface-raised: #141b3a; --tint: #1d2650; --line: #2a3360;
+      --ink: #eef1fa; --ink-muted: #aeb6d6; --signal: #6e95ff; --on-signal: #0b1026;
+      --violet: #9c87ff; --plum: #e39ab8; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface: #0b1026; --surface-raised: #141b3a; --tint: #1d2650; --line: #2a3360;
+    --ink: #eef1fa; --ink-muted: #aeb6d6; --signal: #6e95ff; --on-signal: #0b1026;
+    --violet: #9c87ff; --plum: #e39ab8; color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--surface); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 26px; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--signal); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: var(--radius-s); }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding-inline: max(var(--space-3), env(safe-area-inset-left, 0px)); }
+  @media (min-width: 720px) { .wrap { padding-inline: var(--space-5); } }
+
+  .label { font-family: var(--font-mono); font-size: 12px; line-height: 16px; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; color: var(--signal); margin: 0; }
+  h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; text-wrap: balance; }
+  h1 { font-size: clamp(42px, 7vw, 72px); line-height: 1.05; font-weight: 800; letter-spacing: -1.5px; }
+  h2 { font-size: clamp(32px, 4.6vw, 48px); line-height: 1.08; font-weight: 700; letter-spacing: -0.8px; }
+  h3 { font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -0.3px; }
+  .lead { font-size: 19px; line-height: 30px; color: var(--ink-muted); max-width: 34em; margin: 0; }
+  p { margin: 0; }
+  .muted { color: var(--ink-muted); }
+  .hl { color: var(--signal); }
+
+  /* Header */
+  header { padding-block: var(--space-4); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.3px; }
+  .brand img { width: 22px; height: 28px; }
+  .mark-dark { display: none; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mark-light { display: none; } :root:not([data-theme="light"]) .mark-dark { display: block; } }
+  :root[data-theme="dark"] .mark-light { display: none; } :root[data-theme="dark"] .mark-dark { display: block; }
+  .nav ul { list-style: none; display: flex; gap: var(--space-4); margin: 0; padding: 0; flex-wrap: wrap; }
+  .nav ul a { color: var(--ink-muted); text-decoration: none; font-weight: 500; }
+  .nav ul a:hover { color: var(--ink); }
+
+  section { padding-block: var(--space-6); }
+  @media (min-width: 900px) { section { padding-block: var(--space-7); } }
+  .section-head { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-5); max-width: 760px; }
+  .section-head .lead { margin-top: var(--space-2); }
+
+  /* Hero */
+  .hero { padding-block: var(--space-5) var(--space-6); }
+  .hero-grid { display: grid; gap: var(--space-5); align-items: center; }
+  @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.25fr 0.75fr; gap: var(--space-6); } }
+  .hero-text { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+  .actions { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-2); }
+  .btn { display: inline-flex; align-items: center; gap: var(--space-2); padding: 14px 24px; border-radius: var(--radius-pill); font: 600 16px/20px var(--font-body); text-decoration: none; border: 1px solid transparent; cursor: pointer; }
+  .btn-primary { background: var(--signal); color: var(--on-signal); }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-ghost { color: var(--ink); border-color: var(--line); background: var(--surface-raised); }
+  .btn-ghost:hover { border-color: var(--ink-muted); }
+  .portrait { position: relative; margin: 0; }
+  .portrait img { border-radius: var(--radius-m); aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; width: 100%; background: var(--tint); }
+  .portrait figcaption { margin-top: var(--space-3); font-size: 13px; line-height: 20px; font-weight: 500; color: var(--ink-muted); display: flex; justify-content: space-between; gap: var(--space-3); flex-wrap: wrap; }
+  .lang { font-family: var(--font-mono); font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; }
+
+  /* Field log */
+  .log { border-top: 1px solid var(--line); }
+  .log-row { display: grid; grid-template-columns: 1fr; gap: var(--space-1) var(--space-4); padding-block: var(--space-4); border-bottom: 1px solid var(--line); }
+  @media (min-width: 760px) { .log-row { grid-template-columns: 150px 220px 1fr; align-items: baseline; } }
+  .log-year { font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; color: var(--signal); font-variant-numeric: tabular-nums; }
+  .log-where { font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 26px; }
+  .log-what { color: var(--ink-muted); min-width: 0; }
+
+  /* Work */
+  .work-grid { display: grid; gap: var(--space-4); }
+  @media (min-width: 900px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
+  .card { background: var(--surface-raised); border: 1px solid var(--line); border-radius: var(--radius-m); overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+  .card img { aspect-ratio: 3 / 2; object-fit: cover; width: 100%; }
+  .card-body { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); }
+  .tags { display: flex; gap: var(--space-2); flex-wrap: wrap; list-style: none; padding: 0; margin: 0; }
+  .tags li { font-family: var(--font-mono); font-size: 11px; line-height: 16px; letter-spacing: 1px; text-transform: uppercase; background: var(--tint); color: var(--ink); padding: 4px 8px; border-radius: var(--radius-s); }
+
+  /* Approach */
+  .steps { display: grid; gap: var(--space-4); list-style: none; padding: 0; margin: 0; counter-reset: step; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1040px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+  .steps li { counter-increment: step; display: flex; flex-direction: column; gap: var(--space-2); padding-top: var(--space-4); border-top: 2px solid var(--ink); }
+  .steps li::before { content: "0" counter(step); font-family: var(--font-mono); font-size: 13px; letter-spacing: 1px; color: var(--signal); }
+
+  /* Services */
+  .services { display: grid; gap: var(--space-4); }
+  @media (min-width: 900px) { .services { grid-template-columns: repeat(3, 1fr); } }
+  .service { padding: var(--space-4); border-radius: var(--radius-m); background: var(--surface-raised); border: 1px solid var(--line); display: flex; flex-direction: column; gap: var(--space-3); }
+  .service ul { margin: 0; padding-left: 18px; color: var(--ink-muted); }
+
+  /* Stance */
+  .stance { background: var(--tint); }
+  .stance blockquote { margin: 0; max-width: 900px; display: flex; flex-direction: column; gap: var(--space-4); }
+  .stance blockquote p { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 4vw, 44px); line-height: 1.15; letter-spacing: -0.6px; color: var(--plum); text-wrap: balance; }
+  .stance cite { font-style: normal; color: var(--ink-muted); }
+
+  /* Field */
+  .field-grid { display: grid; gap: var(--space-5); align-items: center; }
+  @media (min-width: 900px) { .field-grid { grid-template-columns: 1.2fr 0.8fr; } }
+  .field-grid figure { margin: 0; }
+  .field-grid img { border-radius: var(--radius-m); aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+  .field-grid figcaption { margin-top: var(--space-3); font-size: 13px; line-height: 20px; font-weight: 500; color: var(--ink-muted); }
+  .field-text { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+
+  /* Contact */
+  .contact { border-top: 1px solid var(--line); }
+  .contact-grid { display: flex; flex-direction: column; gap: var(--space-4); max-width: 760px; }
+  .email-row { display: flex; gap: var(--space-3); align-items: center; flex-wrap: wrap; }
+  .email { font-family: var(--font-display); font-size: clamp(24px, 4vw, 36px); font-weight: 700; letter-spacing: -0.5px; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+  .email:hover { color: var(--signal); }
+  .copy-status { font-size: 13px; color: var(--ink-muted); min-height: 20px; }
+
+  footer { padding-block: var(--space-5); border-top: 1px solid var(--line); font-size: 13px; line-height: 20px; color: var(--ink-muted); }
+  footer .wrap { display: flex; flex-direction: column; gap: var(--space-2); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Albert Bitreyeson, home">
+      <img class="mark-light" src="img/mark.svg" alt="">
+      <img class="mark-dark" src="img/mark-on-dark.svg" alt="">
+      Albert Bitreyeson
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#log">Experience</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="label">Applied AI · Québec City</p>
+        <h1>Applied <span class="hl">AI</span> for the plant floor and the clinic.</h1>
+        <p class="lead">I help manufacturers, clinics and growing businesses put AI to work on real operating problems, from machine data to a fix that someone on shift trusts.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#contact">Start a conversation</a>
+          <a class="btn btn-ghost" href="#work">See the work</a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <img src="img/headshot.jpg" alt="Portrait of Albert Bitreyeson in a dark suit and tie" width="827" height="1020">
+        <figcaption><span>Find a way, or make a way.</span><span class="lang">EN · FR</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="log" aria-labelledby="log-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Field log</p>
+        <h2 id="log-title">I've worked from every seat in the room.</h2>
+        <p class="lead">Operator, maintenance, machine builder, industrial AI developer, and regulated software. Each seat shows a different reason AI projects succeed or stall.</p>
+      </div>
+      <div class="log" role="list">
+        <div class="log-row" role="listitem"><span class="log-year">2021 – 2025</span><span class="log-where">ei3</span><span class="log-what">Industrial IoT and AI for machine builders and manufacturers, including OEMs such as Shibaura, Bobst and Milacron. PLC code, automated fault detection, monitoring and predictive AI.</span></div>
+        <div class="log-row" role="listitem"><span class="log-year">2015 – today</span><span class="log-where">Healthcare software</span><span class="log-what">Applications for clinics and hospitals across Québec and New Brunswick, including an electronic medical record certified with government and regulatory bodies.</span></div>
+        <div class="log-row" role="listitem"><span class="log-year">2019</span><span class="log-where">Publisac collator</span><span class="log-what">A collator machine taken from concept to prototype: design, materials sourcing, product development and integration into different plants.</span></div>
+        <div class="log-row" role="listitem"><span class="log-year">2012</span><span class="log-where">Biscuits Leclerc</span><span class="log-what">Equipment maintenance on the line: quality assurance, safety and downtime management.</span></div>
+        <div class="log-row" role="listitem"><span class="log-year">2010</span><span class="log-where">Prémoulé</span><span class="log-what">Machine operator while the plant automated several workflows.</span></div>
+        <div class="log-row" role="listitem"><span class="log-year">2009</span><span class="log-where">Exceldor</span><span class="log-what">Plant work in a heavily regulated food-processing environment.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Work</p>
+        <h2 id="work-title">Three worlds, one practice.</h2>
+      </div>
+      <div class="work-grid">
+        <article class="card">
+          <img src="img/failsafe-controls.jpg" alt="Industrial fail-safe field devices and emergency stop buttons on a demonstration bench" width="1400" height="931">
+          <div class="card-body">
+            <ul class="tags"><li>Industrial IoT</li><li>Predictive AI</li></ul>
+            <h3>Connected machines</h3>
+            <p class="muted">Machine data collection, fault detection and predictive maintenance for OEMs and the plants that run their equipment.</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="img/medical-microchip.jpg" alt="Microfluidic chip for point-of-care medical devices on a grid" width="1400" height="933">
+          <div class="card-body">
+            <ul class="tags"><li>Healthcare</li><li>Regulated</li></ul>
+            <h3>Clinics and hospitals</h3>
+            <p class="muted">A decade of software for care teams, certified to strict North American standards, with privacy built in and data kept in Canada.</p>
+          </div>
+        </article>
+        <article class="card">
+          <img src="img/automation-cell.jpg" alt="Automated dispensing cell with a robotic arm and sample tubes" width="1400" height="931">
+          <div class="card-body">
+            <ul class="tags"><li>Automation</li><li>Machine building</li></ul>
+            <h3>Machines and lines</h3>
+            <p class="muted">From operating and maintaining lines to designing a collator machine: what automation really costs, and what operators need to trust it.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="approach" aria-labelledby="approach-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Approach</p>
+        <h2 id="approach-title">How an AI project gets adopted.</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Find the decision</h3><p class="muted">Start from one operating decision to improve: a fault, a forecast, a quality call. Not from a model.</p></li>
+        <li><h3>Check the data</h3><p class="muted">Is there enough history, and is it the right data? Most projects stall here, so we look first.</p></li>
+        <li><h3>Build small</h3><p class="muted">Ship the smallest version that works on real data, then test it with the people who will use it.</p></li>
+        <li><h3>Plan adoption</h3><p class="muted">Who uses it, on which shift, and what a wrong answer costs. That path is part of the deliverable.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="label">Services</p>
+        <h2 id="services-title">Ways to work together.</h2>
+      </div>
+      <div class="services">
+        <div class="service">
+          <h3>Advise</h3>
+          <ul><li>AI opportunity and readiness reviews</li><li>Use-case fit, feasibility and risk</li><li>Program and cohort advisory</li></ul>
+        </div>
+        <div class="service">
+          <h3>Build</h3>
+          <ul><li>AI and automation prototypes on your data</li><li>Data integration and reporting</li><li>Secure, Canadian-hosted solutions</li></ul>
+        </div>
+        <div class="service">
+          <h3>Teach</h3>
+          <ul><li>Workshops for teams and leaders</li><li>Coaching for student and employer cohorts</li><li>In French or English</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stance" aria-label="Point of view">
+    <div class="wrap">
+      <blockquote>
+        <p>Plants don't adopt AI. They adopt a fix for an operating problem that someone on the floor trusts.</p>
+        <cite>Albert Bitreyeson</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section aria-labelledby="field-title">
+    <div class="wrap field-grid">
+      <figure>
+        <img src="img/all-in-montreal.jpg" alt="Albert Bitreyeson with two attendees in front of the large ALL IN letters at the AI summit in Montréal" width="1600" height="1200">
+        <figcaption>ALL IN, Montréal, 2026</figcaption>
+      </figure>
+      <div class="field-text">
+        <p class="label">In the field</p>
+        <h2 id="field-title">Close to where Canadian AI is heading.</h2>
+        <p class="lead">At ALL IN in Montréal, Canada's flagship AI event, I met industry leaders to see how AI is actually being adopted, and I bring those conversations back into the work.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-title">
+    <div class="wrap"><div class="contact-grid">
+      <p class="label">Contact</p>
+      <h2 id="contact-title">Have an operating problem AI could help with?</h2>
+      <p class="lead">Tell me about it. I reply within two business days, in French or English.</p>
+      <div class="email-row">
+        <a class="email" href="mailto:albertb@infodata.ca">albertb@infodata.ca</a>
+        <button class="btn btn-ghost" type="button" id="copy-email">Copy email</button>
+      </div>
+      <p class="copy-status" id="copy-status" aria-live="polite"></p>
+    </div></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Albert Bitreyeson · Québec City, Canada</p>
+    <p>Photos: automation cell and fail-safe controls by Shixart1985, CC BY 2.0; microfluidic chip by FMNLab, CC BY 4.0; all via Wikimedia Commons.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copy-email');
+    var status = document.getElementById('copy-status');
+    var email = 'albertb@infodata.ca';
+    btn.addEventListener('click', function () {
+      var done = function () { status.textContent = 'Email copied.'; };
+      var fail = function () { status.textContent = 'Copy it from above: ' + email; };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(done, fail);
+      } else { fail(); }
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,7 +1,6 @@
-# Arey.
-Showcase website
+# dcentri.github.io
 
-## Made possible with this awesome projects.
-Vue : https://github.com/vuejs/vue
+Personal site of Albert Bitreyeson: applied AI for the plant floor and the clinic.
 
-ParticleJs : https://github.com/VincentGarreau/particles.js/
+Plain static HTML and CSS (no build step), served by GitHub Pages from `master`.
+Brand tokens (colors, type, spacing) follow the Albert Bitreyeson brand book and live in the `:root` block of `index.html`.
