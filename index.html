@@ -307,7 +307,7 @@
       <h2 id="contact-title">Have an operating problem AI could help with?</h2>
       <p class="lead">Tell me about it. I reply within two business days, in French or English.</p>
       <div class="email-row">
-        <a class="email" href="mailto:albertb@medosuite.com">albertb@medosuite.com</a>
+        <a class="email" id="email-link" href="#contact" data-u="btrebla" data-d="moc.etiusodem">albertb [at] medosuite [dot] com</a>
         <button class="btn btn-ghost" type="button" id="copy-email">Copy email</button>
       </div>
       <p class="copy-status" id="copy-status" aria-live="polite"></p>
@@ -326,7 +326,11 @@
   (function () {
     var btn = document.getElementById('copy-email');
     var status = document.getElementById('copy-status');
-    var email = 'albertb@medosuite.com';
+    var link = document.getElementById('email-link');
+    var rev = function (t) { return t.split('').reverse().join(''); };
+    var email = rev(link.getAttribute('data-u')) + '@' + rev(link.getAttribute('data-d'));
+    link.textContent = email;
+    link.href = 'mai' + 'lto:' + email;
     btn.addEventListener('click', function () {
       var done = function () { status.textContent = 'Email copied.'; };
       var fail = function () { status.textContent = 'Copy it from above: ' + email; };
